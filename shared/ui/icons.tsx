@@ -1,4 +1,4 @@
-import Svg, { Circle, Line, Path, Rect } from 'react-native-svg';
+import Svg, { Circle, Line, Path, Polygon, Polyline, Rect } from 'react-native-svg';
 
 // 웹 인라인 SVG를 react-native-svg로 충실 이식. stroke="currentColor"는
 // RN에서 안 되므로 color prop으로 명시 주입한다.
@@ -159,10 +159,10 @@ export function PlusIcon({ size = 22, color = '#9aa8a2' }: IconProps) {
   );
 }
 
-export function XIcon({ size = 12, color = '#ffffff' }: IconProps) {
+export function XIcon({ size = 12, color = '#ffffff', strokeWidth = 3 }: IconProps) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Path d="M18 6L6 18M6 6l12 12" stroke={color} strokeWidth={3} strokeLinecap="round" />
+      <Path d="M18 6L6 18M6 6l12 12" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" />
     </Svg>
   );
 }
@@ -176,10 +176,155 @@ export function PinIcon({ size = 10, color = '#ffffff' }: IconProps) {
   );
 }
 
-export function CheckIcon({ size = 15, color = '#005049' }: IconProps) {
+export function CheckIcon({ size = 15, color = '#005049', strokeWidth = 3 }: IconProps) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Path d="M20 6L9 17l-5-5" stroke={color} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M20 6L9 17l-5-5" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}
+
+// ─── Phase 2 (홈 & 촬영자 탐색) ────────────────────────────────────
+
+export function SearchIcon({ size = 18, color = '#3e4947', strokeWidth = 2 }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Circle cx="11" cy="11" r="8" stroke={color} strokeWidth={strokeWidth} />
+      <Path d="M21 21l-4.35-4.35" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+export function FilterIcon({ size = 19, color = '#005049' }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Line x1="4" y1="6" x2="20" y2="6" stroke={color} strokeWidth={2} strokeLinecap="round" />
+      <Line x1="8" y1="12" x2="16" y2="12" stroke={color} strokeWidth={2} strokeLinecap="round" />
+      <Line x1="11" y1="18" x2="13" y2="18" stroke={color} strokeWidth={2} strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+export function BellIcon({ size = 20, color = '#005049' }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function HeartIcon({ size = 12, fill = '#ffffff', stroke }: IconProps & { fill?: string; stroke?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill={fill}>
+      <Path
+        d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+        stroke={stroke}
+        strokeWidth={stroke ? 1.5 : 0}
+      />
+    </Svg>
+  );
+}
+
+export function StarIcon({ size = 12, color = '#005049', filled = true }: IconProps & { filled?: boolean }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? color : 'none'}>
+      <Polygon
+        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+        stroke={filled ? undefined : color}
+        strokeWidth={filled ? 0 : 2}
+      />
+    </Svg>
+  );
+}
+
+export function BookmarkIcon({ size = 18, fill = 'none', stroke = '#005049' }: IconProps & { fill?: string; stroke?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill={fill}>
+      <Path
+        d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"
+        stroke={stroke}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function ChatIcon({ size = 16, color = '#171d1c' }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function ShareIcon({ size = 19, color = '#171d1c' }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Circle cx="18" cy="5" r="3" stroke={color} strokeWidth={2} />
+      <Circle cx="6" cy="12" r="3" stroke={color} strokeWidth={2} />
+      <Circle cx="18" cy="19" r="3" stroke={color} strokeWidth={2} />
+      <Line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke={color} strokeWidth={2} />
+      <Line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke={color} strokeWidth={2} />
+    </Svg>
+  );
+}
+
+export function ChevronRightIcon({ size = 15, color = '#005049', strokeWidth = 2.5 }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path d="M9 18l6-6-6-6" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}
+
+export function GridIcon({ size = 16, color = '#171d1c' }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Rect x="3" y="3" width="7" height="7" stroke={color} strokeWidth={2} />
+      <Rect x="14" y="3" width="7" height="7" stroke={color} strokeWidth={2} />
+      <Rect x="14" y="14" width="7" height="7" stroke={color} strokeWidth={2} />
+      <Rect x="3" y="14" width="7" height="7" stroke={color} strokeWidth={2} />
+    </Svg>
+  );
+}
+
+export function MapIcon({ size = 16, color = '#171d1c' }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+      <Line x1="8" y1="2" x2="8" y2="18" stroke={color} strokeWidth={2} />
+      <Line x1="16" y1="6" x2="16" y2="22" stroke={color} strokeWidth={2} />
+    </Svg>
+  );
+}
+
+export function CrownIcon({ size = 11, color = '#ffffff' }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+      <Path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </Svg>
+  );
+}
+
+export function TrendingIcon({ size = 12, color = '#ea580c' }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+      <Polyline points="17 6 23 6 23 12" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   );
 }

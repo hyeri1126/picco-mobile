@@ -11,6 +11,7 @@ export const ROUTES = {
   setupClient: '/profile/setup/client',
   setupPhotographer: '/profile/setup/photographer',
   profileComplete: '/profile/complete',
+  photographers: '/photographers',
 } as const;
 
 export const href = (path: string): Href => path as unknown as Href;
